@@ -10,34 +10,69 @@
     <link rel="apple-touch-icon" href="icons/icon-192x192.png">
 </head>
 <body>
-    <div class="calculator">
-        <div class="display">
-            <div class="previous-operand" id="previous-operand"></div>
-            <div class="current-operand" id="current-operand">0</div>
+    <div class="calculator-container">
+        <!-- Panneau de contrôle -->
+        <div class="control-panel">
+            <div class="control-group">
+                <label>Taille boutons:</label>
+                <select id="buttonSize" onchange="changeButtonSize()">
+                    <option value="small">Petit</option>
+                    <option value="medium" selected>Moyen</option>
+                    <option value="large">Grand</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label>Thème:</label>
+                <select id="colorTheme" onchange="changeColorTheme()">
+                    <option value="default">Par défaut</option>
+                    <option value="light">Clair</option>
+                    <option value="dark">Sombre</option>
+                    <option value="colorful">Coloré</option>
+                    <option value="monochrome">Monochrome</option>
+                </select>
+            </div>
+            <button class="toggle-history" onclick="toggleHistory()">
+                <span id="historyIcon">📜</span> Historique
+            </button>
         </div>
-        <div class="buttons">
-            <button class="span-two" onclick="clearAll()">AC</button>
-            <button onclick="deleteLast()">DEL</button>
-            <button onclick="appendOperator('/')">/</button>
+
+        <div class="calculator">
+            <!-- Historique -->
+            <div class="history-panel" id="historyPanel">
+                <div class="history-content" id="historyContent">
+                    <p class="history-empty">Aucun calcul dans l'historique</p>
+                </div>
+                <button class="clear-history" onclick="clearHistory()">Effacer tout</button>
+            </div>
             
-            <button onclick="appendNumber('7')">7</button>
-            <button onclick="appendNumber('8')">8</button>
-            <button onclick="appendNumber('9')">9</button>
-            <button onclick="appendOperator('*')">×</button>
-            
-            <button onclick="appendNumber('4')">4</button>
-            <button onclick="appendNumber('5')">5</button>
-            <button onclick="appendNumber('6')">6</button>
-            <button onclick="appendOperator('-')">-</button>
-            
-            <button onclick="appendNumber('1')">1</button>
-            <button onclick="appendNumber('2')">2</button>
-            <button onclick="appendNumber('3')">3</button>
-            <button onclick="appendOperator('+')">+</button>
-            
-            <button onclick="appendNumber('0')">0</button>
-            <button onclick="appendNumber('.')">.</button>
-            <button class="span-two" onclick="calculate()">=</button>
+            <div class="display">
+                <div class="previous-operand" id="previous-operand"></div>
+                <div class="current-operand" id="current-operand">0</div>
+            </div>
+            <div class="buttons" id="buttons">
+                <button class="span-two" onclick="clearAll()">AC</button>
+                <button onclick="deleteLast()">DEL</button>
+                <button onclick="appendOperator('/')">/</button>
+                
+                <button onclick="appendNumber('7')">7</button>
+                <button onclick="appendNumber('8')">8</button>
+                <button onclick="appendNumber('9')">9</button>
+                <button onclick="appendOperator('*')">×</button>
+                
+                <button onclick="appendNumber('4')">4</button>
+                <button onclick="appendNumber('5')">5</button>
+                <button onclick="appendNumber('6')">6</button>
+                <button onclick="appendOperator('-')">-</button>
+                
+                <button onclick="appendNumber('1')">1</button>
+                <button onclick="appendNumber('2')">2</button>
+                <button onclick="appendNumber('3')">3</button>
+                <button onclick="appendOperator('+')">+</button>
+                
+                <button onclick="appendNumber('0')">0</button>
+                <button onclick="appendNumber('.')">.</button>
+                <button class="span-two" onclick="calculate()">=</button>
+            </div>
         </div>
     </div>
     

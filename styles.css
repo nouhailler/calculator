@@ -13,15 +13,248 @@ body {
     align-items: center;
     padding: 20px;
     color: #fff;
+    transition: background 0.3s ease;
+}
+
+body.light-theme {
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+
+body.dark-theme {
+    background: #000;
+}
+
+body.colorful-theme {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+body.monochrome-theme {
+    background: #f0f0f0;
+}
+
+.calculator-container {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.control-panel {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    background: rgba(44, 62, 80, 0.8);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+}
+
+body.light-theme .control-panel {
+    background: rgba(255, 255, 255, 0.8);
+    color: #333;
+}
+
+body.dark-theme .control-panel {
+    background: rgba(20, 20, 20, 0.8);
+}
+
+body.colorful-theme .control-panel {
+    background: rgba(102, 126, 234, 0.8);
+}
+
+body.monochrome-theme .control-panel {
+    background: rgba(200, 200, 200, 0.8);
+    color: #333;
+}
+
+.control-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex: 1;
+    min-width: 120px;
+}
+
+.control-group label {
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+.control-group select {
+    padding: 6px 10px;
+    border: none;
+    border-radius: 8px;
+    background: #4a5568;
+    color: white;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+body.light-theme .control-group select {
+    background: #6b7280;
+    color: white;
+}
+
+body.dark-theme .control-group select {
+    background: #333;
+    color: white;
+}
+
+body.colorful-theme .control-group select {
+    background: #5b21b6;
+    color: white;
+}
+
+body.monochrome-theme .control-group select {
+    background: #888;
+    color: white;
+}
+
+.toggle-history {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 8px;
+    background: #10b981;
+    color: white;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.toggle-history:hover {
+    background: #34d399;
+    transform: scale(1.02);
+}
+
+.toggle-history:active {
+    background: #059669;
+    transform: scale(0.98);
 }
 
 .calculator {
     width: 100%;
-    max-width: 400px;
     background: #2c3e50;
     border-radius: 20px;
     padding: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+body.light-theme .calculator {
+    background: #ffffff;
+    color: #333;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-theme .calculator {
+    background: #111;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+body.colorful-theme .calculator {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+body.monochrome-theme .calculator {
+    background: #ddd;
+    color: #333;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.history-panel {
+    background: rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    padding: 15px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.history-panel.show {
+    max-height: 200px;
+    padding: 15px;
+}
+
+.history-content {
+    flex: 1;
+    overflow-y: auto;
+    margin-bottom: 10px;
+}
+
+.history-empty {
+    color: rgba(255, 255, 255, 0.5);
+    text-align: center;
+    font-style: italic;
+    padding: 10px;
+}
+
+body.light-theme .history-empty,
+body.monochrome-theme .history-empty {
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.history-item {
+    padding: 8px 12px;
+    margin-bottom: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.history-item:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+body.light-theme .history-item,
+body.monochrome-theme .history-item {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+body.light-theme .history-item:hover,
+body.monochrome-theme .history-item:hover {
+    background: rgba(0, 0, 0, 0.1);
+}
+
+.history-item .expression {
+    font-weight: bold;
+}
+
+.history-item .result {
+    color: #10b981;
+}
+
+.clear-history {
+    padding: 8px 12px;
+    border: none;
+    border-radius: 8px;
+    background: #ef4444;
+    color: white;
+    font-size: 0.8rem;
+    cursor: pointer;
+    align-self: flex-end;
+    transition: all 0.2s;
+}
+
+.clear-history:hover {
+    background: #f87171;
+}
+
+.clear-history:active {
+    background: #dc2626;
 }
 
 .display {
@@ -34,6 +267,25 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    transition: all 0.3s ease;
+}
+
+body.light-theme .display {
+    background: #f8f9fa;
+    color: #333;
+}
+
+body.dark-theme .display {
+    background: #000;
+}
+
+body.colorful-theme .display {
+    background: rgba(0, 0, 0, 0.2);
+}
+
+body.monochrome-theme .display {
+    background: #eee;
+    color: #333;
 }
 
 .previous-operand {
@@ -41,6 +293,12 @@ body {
     font-size: 1.2rem;
     height: 24px;
     overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+body.light-theme .previous-operand,
+body.monochrome-theme .previous-operand {
+    color: rgba(0, 0, 0, 0.5);
 }
 
 .current-operand {
@@ -48,15 +306,23 @@ body {
     font-size: 2.5rem;
     overflow: hidden;
     text-overflow: ellipsis;
+    transition: all 0.3s ease;
+}
+
+body.light-theme .current-operand,
+body.monochrome-theme .current-operand {
+    color: #333;
 }
 
 .buttons {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
+    transition: all 0.3s ease;
 }
 
-button {
+/* Taille des boutons */
+.buttons button {
     background: #4a5568;
     color: #fff;
     border: none;
@@ -68,13 +334,29 @@ button {
     height: 70px;
 }
 
+.buttons.small button {
+    padding: 12px;
+    font-size: 1.1rem;
+    height: 50px;
+}
+
+.buttons.medium button {
+    padding: 16px;
+    font-size: 1.3rem;
+    height: 60px;
+}
+
+.buttons.large button {
+    padding: 24px;
+    font-size: 1.8rem;
+    height: 85px;
+}
+
 button:hover {
-    background: #5a6a80;
     transform: scale(1.02);
 }
 
 button:active {
-    background: #3a4558;
     transform: scale(0.98);
 }
 
@@ -82,46 +364,106 @@ button.span-two {
     grid-column: span 2;
 }
 
-/* Operateurs */
-button:not(.span-two):nth-child(4n) {
+/* Thèmes de couleurs */
+
+/* Thème par défaut */
+body:not(.light-theme):not(.dark-theme):not(.colorful-theme):not(.monochrome-theme) .buttons button {
+    background: #4a5568;
+}
+
+body:not(.light-theme):not(.dark-theme):not(.colorful-theme):not(.monochrome-theme) .buttons button:not(.span-two):nth-child(4n) {
     background: #f59e0b;
 }
 
-button:not(.span-two):nth-child(4n):hover {
-    background: #fbbf24;
-}
-
-button:not(.span-two):nth-child(4n):active {
-    background: #d97706;
-}
-
-/* Egale */
-button.span-two:last-child {
+body:not(.light-theme):not(.dark-theme):not(.colorful-theme):not(.monochrome-theme) .buttons button.span-two:last-child {
     background: #10b981;
 }
 
-button.span-two:last-child:hover {
-    background: #34d399;
-}
-
-button.span-two:last-child:active {
-    background: #059669;
-}
-
-/* AC et DEL */
-button:first-child,
-button:nth-child(2) {
+body:not(.light-theme):not(.dark-theme):not(.colorful-theme):not(.monochrome-theme) button:first-child,
+body:not(.light-theme):not(.dark-theme):not(.colorful-theme):not(.monochrome-theme) button:nth-child(2) {
     background: #ef4444;
 }
 
-button:first-child:hover,
-button:nth-child(2):hover {
-    background: #f87171;
+/* Thème clair */
+body.light-theme .buttons button {
+    background: #6b7280;
+    color: white;
 }
 
-button:first-child:active,
-button:nth-child(2):active {
-    background: #dc2626;
+body.light-theme .buttons button:not(.span-two):nth-child(4n) {
+    background: #f59e0b;
+}
+
+body.light-theme .buttons button.span-two:last-child {
+    background: #10b981;
+}
+
+body.light-theme button:first-child,
+body.light-theme button:nth-child(2) {
+    background: #ef4444;
+}
+
+/* Thème sombre */
+body.dark-theme .buttons button {
+    background: #374151;
+    color: white;
+}
+
+body.dark-theme .buttons button:not(.span-two):nth-child(4n) {
+    background: #f59e0b;
+}
+
+body.dark-theme .buttons button.span-two:last-child {
+    background: #10b981;
+}
+
+body.dark-theme button:first-child,
+body.dark-theme button:nth-child(2) {
+    background: #ef4444;
+}
+
+/* Thème coloré */
+body.colorful-theme .buttons button {
+    background: #5b21b6;
+    color: white;
+}
+
+body.colorful-theme .buttons button:nth-child(1) { background: #ef4444; }
+body.colorful-theme .buttons button:nth-child(2) { background: #f59e0b; }
+body.colorful-theme .buttons button:nth-child(3) { background: #10b981; }
+body.colorful-theme .buttons button:nth-child(4) { background: #3b82f6; }
+body.colorful-theme .buttons button:nth-child(5) { background: #8b5cf6; }
+body.colorful-theme .buttons button:nth-child(6) { background: #ec4899; }
+body.colorful-theme .buttons button:nth-child(7) { background: #f97316; }
+body.colorful-theme .buttons button:nth-child(8) { background: #eab308; }
+body.colorful-theme .buttons button:nth-child(9) { background: #22c55e; }
+body.colorful-theme .buttons button:nth-child(10) { background: #06b6d4; }
+body.colorful-theme .buttons button:nth-child(11) { background: #84cc16; }
+body.colorful-theme .buttons button:nth-child(12) { background: #f59e0b; }
+body.colorful-theme .buttons button:nth-child(13) { background: #ef4444; }
+body.colorful-theme .buttons button:nth-child(14) { background: #3b82f6; }
+body.colorful-theme .buttons button:nth-child(15) { background: #10b981; }
+body.colorful-theme .buttons button:nth-child(16) { background: #8b5cf6; }
+body.colorful-theme .buttons button:nth-child(17) { background: #6366f1; }
+body.colorful-theme .buttons button.span-two:last-child { background: #16a34a; }
+
+/* Thème monochrome */
+body.monochrome-theme .buttons button {
+    background: #888;
+    color: white;
+}
+
+body.monochrome-theme .buttons button:not(.span-two):nth-child(4n) {
+    background: #666;
+}
+
+body.monochrome-theme .buttons button.span-two:last-child {
+    background: #555;
+}
+
+body.monochrome-theme button:first-child,
+body.monochrome-theme button:nth-child(2) {
+    background: #444;
 }
 
 .install-prompt {
@@ -149,6 +491,10 @@ button:nth-child(2):active {
     padding: 8px 16px;
     font-size: 1rem;
     height: auto;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
 .install-prompt button:last-child {
@@ -174,9 +520,18 @@ button:nth-child(2):active {
         font-size: 2rem;
     }
     
-    button {
-        padding: 15px;
-        height: 60px;
-        font-size: 1.2rem;
+    .control-panel {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .control-group {
+        flex: none;
+        width: 100%;
+    }
+    
+    .toggle-history {
+        width: 100%;
+        justify-content: center;
     }
 }
