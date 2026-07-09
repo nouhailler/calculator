@@ -1,0 +1,182 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: #fff;
+}
+
+.calculator {
+    width: 100%;
+    max-width: 400px;
+    background: #2c3e50;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.display {
+    background: #000;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: right;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.previous-operand {
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.2rem;
+    height: 24px;
+    overflow: hidden;
+}
+
+.current-operand {
+    color: #fff;
+    font-size: 2.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+}
+
+button {
+    background: #4a5568;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 20px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    height: 70px;
+}
+
+button:hover {
+    background: #5a6a80;
+    transform: scale(1.02);
+}
+
+button:active {
+    background: #3a4558;
+    transform: scale(0.98);
+}
+
+button.span-two {
+    grid-column: span 2;
+}
+
+/* Operateurs */
+button:not(.span-two):nth-child(4n) {
+    background: #f59e0b;
+}
+
+button:not(.span-two):nth-child(4n):hover {
+    background: #fbbf24;
+}
+
+button:not(.span-two):nth-child(4n):active {
+    background: #d97706;
+}
+
+/* Egale */
+button.span-two:last-child {
+    background: #10b981;
+}
+
+button.span-two:last-child:hover {
+    background: #34d399;
+}
+
+button.span-two:last-child:active {
+    background: #059669;
+}
+
+/* AC et DEL */
+button:first-child,
+button:nth-child(2) {
+    background: #ef4444;
+}
+
+button:first-child:hover,
+button:nth-child(2):hover {
+    background: #f87171;
+}
+
+button:first-child:active,
+button:nth-child(2):active {
+    background: #dc2626;
+}
+
+.install-prompt {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #2c3e50;
+    padding: 15px 20px;
+    border-radius: 10px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+}
+
+.install-prompt.show {
+    display: flex;
+}
+
+.install-prompt button {
+    background: #10b981;
+    padding: 8px 16px;
+    font-size: 1rem;
+    height: auto;
+}
+
+.install-prompt button:last-child {
+    background: #ef4444;
+}
+
+@media (max-width: 400px) {
+    .calculator {
+        margin: 0;
+        border-radius: 0;
+        max-width: 100%;
+    }
+    
+    body {
+        padding: 0;
+    }
+    
+    .display {
+        padding: 15px;
+    }
+    
+    .current-operand {
+        font-size: 2rem;
+    }
+    
+    button {
+        padding: 15px;
+        height: 60px;
+        font-size: 1.2rem;
+    }
+}
