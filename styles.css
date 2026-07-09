@@ -186,6 +186,34 @@ body.monochrome-theme .calculator {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
+/* Affichage mémoire */
+.memory-display {
+    display: none;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-size: 0.8rem;
+}
+
+.memory-display.show {
+    display: flex;
+}
+
+#memoryIndicator {
+    background: #10b981;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 0.7rem;
+}
+
+#memoryValue {
+    font-family: monospace;
+}
+
 .history-panel {
     background: transparent;
     border-radius: 10px;
@@ -282,7 +310,7 @@ body.monochrome-theme .history-item:hover {
     background: #000;
     border-radius: 10px;
     padding: 20px;
-    margin-bottom: 20px;
+    margin-bottom: 15px;
     text-align: right;
     min-height: 100px;
     display: flex;
@@ -366,42 +394,134 @@ body.colorful-theme .current-operand {
     color: #fff;
 }
 
-.buttons {
+/* Boutons scientifiques */
+.scientific-buttons {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 8px;
+    margin-bottom: 10px;
     transition: all 0.3s ease;
 }
 
-/* Taille des boutons */
+.scientific-buttons.small {
+    gap: 5px;
+}
+
+.scientific-buttons.medium {
+    gap: 7px;
+}
+
+.scientific-buttons.large {
+    gap: 10px;
+}
+
+.scientific-buttons button {
+    background: #374151;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    height: 45px;
+}
+
+.scientific-buttons.small button {
+    padding: 8px;
+    font-size: 0.8rem;
+    height: 35px;
+}
+
+.scientific-buttons.medium button {
+    padding: 10px;
+    font-size: 0.9rem;
+    height: 40px;
+}
+
+.scientific-buttons.large button {
+    padding: 15px;
+    font-size: 1.1rem;
+    height: 55px;
+}
+
+.scientific-buttons button:hover {
+    background: #4a5568;
+    transform: scale(1.02);
+}
+
+.scientific-buttons button:active {
+    background: #252f3f;
+    transform: scale(0.98);
+}
+
+.scientific-buttons button.span-two {
+    grid-column: span 2;
+}
+
+/* Boutons mémoire */
+.buttons .memory-btn {
+    background: #3b82f6;
+    color: white;
+}
+
+.buttons .memory-btn:hover {
+    background: #60a5fa;
+}
+
+.buttons .memory-btn:active {
+    background: #2563eb;
+}
+
+/* Boutons principaux */
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+.buttons.small {
+    gap: 5px;
+}
+
+.buttons.medium {
+    gap: 7px;
+}
+
+.buttons.large {
+    gap: 12px;
+}
+
 .buttons button {
     background: #4a5568;
     color: #fff;
     border: none;
     border-radius: 10px;
-    padding: 20px;
-    font-size: 1.5rem;
-    cursor: pointer;
-    transition: all 0.2s;
-    height: 70px;
-}
-
-.buttons.small button {
-    padding: 12px;
-    font-size: 1.1rem;
-    height: 50px;
-}
-
-.buttons.medium button {
     padding: 16px;
     font-size: 1.3rem;
+    cursor: pointer;
+    transition: all 0.2s;
     height: 60px;
 }
 
+.buttons.small button {
+    padding: 10px;
+    font-size: 1rem;
+    height: 45px;
+}
+
+.buttons.medium button {
+    padding: 14px;
+    font-size: 1.2rem;
+    height: 55px;
+}
+
 .buttons.large button {
-    padding: 24px;
-    font-size: 1.8rem;
-    height: 85px;
+    padding: 20px;
+    font-size: 1.5rem;
+    height: 70px;
 }
 
 button:hover {
@@ -416,13 +536,17 @@ button.span-two {
     grid-column: span 2;
 }
 
+button.span-three {
+    grid-column: span 3;
+}
+
 /* Thème par défaut */
 body.default-theme .buttons button {
     background: #4a5568;
     color: #fff;
 }
 
-body.default-theme .buttons button:not(.span-two):nth-child(4n) {
+body.default-theme .buttons button:not(.span-two):not(.span-three):not(.memory-btn):nth-child(5n+5) {
     background: #f59e0b;
 }
 
@@ -431,8 +555,14 @@ body.default-theme .buttons button.span-two:last-child {
 }
 
 body.default-theme button:first-child,
-body.default-theme button:nth-child(2) {
+body.default-theme button:nth-child(2),
+body.default-theme button:nth-child(3),
+body.default-theme button:nth-child(4) {
     background: #ef4444;
+}
+
+body.default-theme button:nth-child(5) {
+    background: #6b7280;
 }
 
 /* Thème clair */
@@ -441,7 +571,7 @@ body.light-theme .buttons button {
     color: white;
 }
 
-body.light-theme .buttons button:not(.span-two):nth-child(4n) {
+body.light-theme .buttons button:not(.span-two):not(.span-three):not(.memory-btn):nth-child(5n+5) {
     background: #f59e0b;
 }
 
@@ -450,8 +580,14 @@ body.light-theme .buttons button.span-two:last-child {
 }
 
 body.light-theme button:first-child,
-body.light-theme button:nth-child(2) {
+body.light-theme button:nth-child(2),
+body.light-theme button:nth-child(3),
+body.light-theme button:nth-child(4) {
     background: #ef4444;
+}
+
+body.light-theme button:nth-child(5) {
+    background: #9ca3af;
 }
 
 /* Thème sombre */
@@ -460,7 +596,7 @@ body.dark-theme .buttons button {
     color: white;
 }
 
-body.dark-theme .buttons button:not(.span-two):nth-child(4n) {
+body.dark-theme .buttons button:not(.span-two):not(.span-three):not(.memory-btn):nth-child(5n+5) {
     background: #f59e0b;
 }
 
@@ -469,8 +605,14 @@ body.dark-theme .buttons button.span-two:last-child {
 }
 
 body.dark-theme button:first-child,
-body.dark-theme button:nth-child(2) {
+body.dark-theme button:nth-child(2),
+body.dark-theme button:nth-child(3),
+body.dark-theme button:nth-child(4) {
     background: #ef4444;
+}
+
+body.dark-theme button:nth-child(5) {
+    background: #4b5563;
 }
 
 /* Thème coloré */
@@ -496,7 +638,13 @@ body.colorful-theme .buttons button:nth-child(14) { background: #3b82f6; }
 body.colorful-theme .buttons button:nth-child(15) { background: #10b981; }
 body.colorful-theme .buttons button:nth-child(16) { background: #8b5cf6; }
 body.colorful-theme .buttons button:nth-child(17) { background: #6366f1; }
+body.colorful-theme .buttons button:nth-child(18) { background: #16a34a; }
+
 body.colorful-theme .buttons button.span-two:last-child { background: #16a34a; }
+
+body.colorful-theme .memory-btn {
+    background: #7c3aed;
+}
 
 /* Thème monochrome */
 body.monochrome-theme .buttons button {
@@ -504,7 +652,7 @@ body.monochrome-theme .buttons button {
     color: white;
 }
 
-body.monochrome-theme .buttons button:not(.span-two):nth-child(4n) {
+body.monochrome-theme .buttons button:not(.span-two):not(.span-three):not(.memory-btn):nth-child(5n+5) {
     background: #666;
 }
 
@@ -513,8 +661,44 @@ body.monochrome-theme .buttons button.span-two:last-child {
 }
 
 body.monochrome-theme button:first-child,
-body.monochrome-theme button:nth-child(2) {
+body.monochrome-theme button:nth-child(2),
+body.monochrome-theme button:nth-child(3),
+body.monochrome-theme button:nth-child(4) {
     background: #444;
+}
+
+body.monochrome-theme button:nth-child(5) {
+    background: #777;
+}
+
+body.monochrome-theme .memory-btn {
+    background: #555;
+}
+
+/* Boutons scientifiques - thèmes */
+body.default-theme .scientific-buttons button {
+    background: #374151;
+    color: #fff;
+}
+
+body.light-theme .scientific-buttons button {
+    background: #4b5563;
+    color: #fff;
+}
+
+body.dark-theme .scientific-buttons button {
+    background: #1f2937;
+    color: #fff;
+}
+
+body.colorful-theme .scientific-buttons button {
+    background: #5b21b6;
+    color: #fff;
+}
+
+body.monochrome-theme .scientific-buttons button {
+    background: #666;
+    color: #fff;
 }
 
 .install-prompt {
@@ -584,5 +768,13 @@ body.monochrome-theme button:nth-child(2) {
     .toggle-history {
         width: 100%;
         justify-content: center;
+    }
+    
+    .scientific-buttons {
+        grid-template-columns: repeat(5, 1fr);
+    }
+    
+    .buttons {
+        grid-template-columns: repeat(5, 1fr);
     }
 }

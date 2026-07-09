@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#2c3e50">
-    <title>Calculatrice PWA</title>
+    <title>Calculatrice Scientifique PWA</title>
     <link rel="manifest" href="manifest.json">
     <link rel="stylesheet" href="styles.css">
     <link rel="apple-touch-icon" href="icons/icon-192x192.png">
@@ -37,6 +37,12 @@
         </div>
 
         <div class="calculator">
+            <!-- Affichage mémoire -->
+            <div class="memory-display" id="memoryDisplay">
+                <span id="memoryIndicator"></span>
+                <span id="memoryValue"></span>
+            </div>
+            
             <!-- Historique -->
             <div class="history-panel" id="historyPanel">
                 <div class="history-content" id="historyContent">
@@ -49,8 +55,34 @@
                 <div class="previous-operand" id="previous-operand"></div>
                 <div class="current-operand" id="current-operand">0</div>
             </div>
+            
+            <!-- Boutons scientifiques (première ligne) -->
+            <div class="scientific-buttons" id="scientificButtons">
+                <button class="scientific" onclick="scientificFunction('sin')">sin</button>
+                <button class="scientific" onclick="scientificFunction('cos')">cos</button>
+                <button class="scientific" onclick="scientificFunction('tan')">tan</button>
+                <button class="scientific" onclick="scientificFunction('pi')">π</button>
+                <button class="scientific" onclick="scientificFunction('e')">e</button>
+            </div>
+            
+            <div class="scientific-buttons" id="scientificButtons2">
+                <button class="scientific" onclick="scientificFunction('log')">log</button>
+                <button class="scientific" onclick="scientificFunction('ln')">ln</button>
+                <button class="scientific" onclick="scientificFunction('sqrt')">√</button>
+                <button class="scientific" onclick="scientificFunction('square')">x²</button>
+                <button class="scientific" onclick="scientificFunction('power')">x^y</button>
+            </div>
+            
+            <!-- Boutons principaux -->
             <div class="buttons" id="buttons">
-                <button class="span-two" onclick="clearAll()">AC</button>
+                <button class="memory-btn" onclick="memoryClear()">MC</button>
+                <button class="memory-btn" onclick="memoryRecall()">MR</button>
+                <button class="memory-btn" onclick="memoryAdd()">M+</button>
+                <button class="memory-btn" onclick="memorySubtract()">M-</button>
+                <button onclick="toggleSign()">±</button>
+                
+                <button onclick="percentage()">%</button>
+                <button onclick="clearAll()">AC</button>
                 <button onclick="deleteLast()">DEL</button>
                 <button onclick="appendOperator('/')">/</button>
                 
@@ -72,6 +104,14 @@
                 <button onclick="appendNumber('0')">0</button>
                 <button onclick="appendNumber('.')">.</button>
                 <button class="span-two" onclick="calculate()">=</button>
+            </div>
+            
+            <!-- Boutons scientifiques (dernière ligne) -->
+            <div class="scientific-buttons" id="scientificButtons3">
+                <button class="scientific" onclick="scientificFunction('factorial')">x!</button>
+                <button class="scientific" onclick="scientificFunction('10pow')">10^x</button>
+                <button class="scientific" onclick="scientificFunction('inverse')">1/x</button>
+                <button class="scientific span-two" onclick="scientificFunction('exp')">e^x</button>
             </div>
         </div>
     </div>

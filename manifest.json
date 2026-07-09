@@ -1,7 +1,7 @@
 {
-    "name": "Calculatrice PWA",
-    "short_name": "Calculatrice",
-    "description": "Une calculatrice avancée avec historique, thèmes personnalisables et taille de boutons ajustable",
+    "name": "Calculatrice Scientifique PWA",
+    "short_name": "Calc Scientifique",
+    "description": "Une calculatrice scientifique complète avec mémoire, historique, thèmes personnalisables et fonctions avancées (sin, cos, tan, log, ln, sqrt, x², x^y, etc.)",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#1a1a2e",
