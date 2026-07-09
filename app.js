@@ -30,7 +30,7 @@ function saveHistory() {
 // Mettre à jour l'affichage de l'historique
 function updateHistoryDisplay() {
     if (history.length === 0) {
-        historyContent.innerHTML = '<p class="history-empty">Aucun calcul dans l'historique</p>';
+        historyContent.innerHTML = '<p class="history-empty">Aucun calcul dans l\'historique</p>';
         return;
     }
     
@@ -80,12 +80,6 @@ function addToHistory(expression, result) {
 // Afficher/Masquer l'historique
 function toggleHistory() {
     historyPanel.classList.toggle('show');
-    const historyIcon = document.getElementById('historyIcon');
-    if (historyPanel.classList.contains('show')) {
-        historyIcon.textContent = '📜';
-    } else {
-        historyIcon.textContent = '📜';
-    }
 }
 
 function updateDisplay() {
@@ -189,8 +183,16 @@ function deleteLast() {
 
 // Changer la taille des boutons
 function changeButtonSize() {
-    const size = document.getElementById('buttonSize').value;
-    buttons.className = 'buttons ' + size;
+    const sizeSelect = document.getElementById('buttonSize');
+    const size = sizeSelect ? sizeSelect.value : 'medium';
+    
+    // Retirer toutes les classes de taille
+    buttons.classList.remove('small', 'medium', 'large');
+    
+    // Ajouter la classe correspondante
+    if (size === 'small' || size === 'medium' || size === 'large') {
+        buttons.classList.add(size);
+    }
     
     // Sauvegarder la préférence
     localStorage.setItem('buttonSize', size);
@@ -198,8 +200,16 @@ function changeButtonSize() {
 
 // Changer le thème de couleurs
 function changeColorTheme() {
-    const theme = document.getElementById('colorTheme').value;
-    document.body.className = theme + '-theme';
+    const themeSelect = document.getElementById('colorTheme');
+    const theme = themeSelect ? themeSelect.value : 'default';
+    
+    // Retirer tous les thèmes
+    document.body.classList.remove('default-theme', 'light-theme', 'dark-theme', 'colorful-theme', 'monochrome-theme');
+    
+    // Ajouter le thème sélectionné
+    if (theme) {
+        document.body.classList.add(theme + '-theme');
+    }
     
     // Sauvegarder la préférence
     localStorage.setItem('colorTheme', theme);
@@ -207,25 +217,37 @@ function changeColorTheme() {
 
 // Charger les préférences sauvegardées
 function loadPreferences() {
-    const savedSize = localStorage.getItem('buttonSize');
-    if (savedSize) {
-        document.getElementById('buttonSize').value = savedSize;
+    const savedSize = localStorage.getItem('buttonSize') || 'medium';
+    const savedTheme = localStorage.getItem('colorTheme') || 'default';
+    
+    // Appliquer la taille
+    const sizeSelect = document.getElementById('buttonSize');
+    if (sizeSelect) {
+        sizeSelect.value = savedSize;
         changeButtonSize();
     }
     
-    const savedTheme = localStorage.getItem('colorTheme');
-    if (savedTheme) {
-        document.getElementById('colorTheme').value = savedTheme;
+    // Appliquer le thème
+    const themeSelect = document.getElementById('colorTheme');
+    if (themeSelect) {
+        themeSelect.value = savedTheme;
         changeColorTheme();
     }
 }
 
 // Initialisation
-window.addEventListener('load', () => {
+function init() {
     updateDisplay();
     loadHistory();
     loadPreferences();
-});
+}
+
+// Attendre que le DOM soit chargé
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+} else {
+    init();
+}
 
 // Gestion du clavier
 window.addEventListener('keydown', (e) => {

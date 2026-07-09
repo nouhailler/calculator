@@ -16,20 +16,29 @@ body {
     transition: background 0.3s ease;
 }
 
+body.default-theme {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    color: #fff;
+}
+
 body.light-theme {
     background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    color: #333;
 }
 
 body.dark-theme {
     background: #000;
+    color: #fff;
 }
 
 body.colorful-theme {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
 }
 
 body.monochrome-theme {
     background: #f0f0f0;
+    color: #333;
 }
 
 .calculator-container {
@@ -50,6 +59,7 @@ body.monochrome-theme {
     background: rgba(44, 62, 80, 0.8);
     border-radius: 15px;
     backdrop-filter: blur(10px);
+    color: #fff;
 }
 
 body.light-theme .control-panel {
@@ -59,10 +69,12 @@ body.light-theme .control-panel {
 
 body.dark-theme .control-panel {
     background: rgba(20, 20, 20, 0.8);
+    color: #fff;
 }
 
 body.colorful-theme .control-panel {
     background: rgba(102, 126, 234, 0.8);
+    color: #fff;
 }
 
 body.monochrome-theme .control-panel {
@@ -91,6 +103,11 @@ body.monochrome-theme .control-panel {
     color: white;
     font-size: 0.9rem;
     cursor: pointer;
+}
+
+body.default-theme .control-group select {
+    background: #4a5568;
+    color: white;
 }
 
 body.light-theme .control-group select {
@@ -270,6 +287,11 @@ body.monochrome-theme .history-item:hover {
     transition: all 0.3s ease;
 }
 
+body.default-theme .display {
+    background: #000;
+    color: #fff;
+}
+
 body.light-theme .display {
     background: #f8f9fa;
     color: #333;
@@ -277,10 +299,12 @@ body.light-theme .display {
 
 body.dark-theme .display {
     background: #000;
+    color: #fff;
 }
 
 body.colorful-theme .display {
     background: rgba(0, 0, 0, 0.2);
+    color: #fff;
 }
 
 body.monochrome-theme .display {
@@ -296,9 +320,21 @@ body.monochrome-theme .display {
     transition: all 0.3s ease;
 }
 
+body.default-theme .previous-operand {
+    color: rgba(255, 255, 255, 0.7);
+}
+
 body.light-theme .previous-operand,
 body.monochrome-theme .previous-operand {
     color: rgba(0, 0, 0, 0.5);
+}
+
+body.dark-theme .previous-operand {
+    color: rgba(255, 255, 255, 0.7);
+}
+
+body.colorful-theme .previous-operand {
+    color: rgba(255, 255, 255, 0.7);
 }
 
 .current-operand {
@@ -309,9 +345,21 @@ body.monochrome-theme .previous-operand {
     transition: all 0.3s ease;
 }
 
+body.default-theme .current-operand {
+    color: #fff;
+}
+
 body.light-theme .current-operand,
 body.monochrome-theme .current-operand {
     color: #333;
+}
+
+body.dark-theme .current-operand {
+    color: #fff;
+}
+
+body.colorful-theme .current-operand {
+    color: #fff;
 }
 
 .buttons {
@@ -364,23 +412,22 @@ button.span-two {
     grid-column: span 2;
 }
 
-/* Thèmes de couleurs */
-
 /* Thème par défaut */
-body:not(.light-theme):not(.dark-theme):not(.colorful-theme):not(.monochrome-theme) .buttons button {
+body.default-theme .buttons button {
     background: #4a5568;
+    color: #fff;
 }
 
-body:not(.light-theme):not(.dark-theme):not(.colorful-theme):not(.monochrome-theme) .buttons button:not(.span-two):nth-child(4n) {
+body.default-theme .buttons button:not(.span-two):nth-child(4n) {
     background: #f59e0b;
 }
 
-body:not(.light-theme):not(.dark-theme):not(.colorful-theme):not(.monochrome-theme) .buttons button.span-two:last-child {
+body.default-theme .buttons button.span-two:last-child {
     background: #10b981;
 }
 
-body:not(.light-theme):not(.dark-theme):not(.colorful-theme):not(.monochrome-theme) button:first-child,
-body:not(.light-theme):not(.dark-theme):not(.colorful-theme):not(.monochrome-theme) button:nth-child(2) {
+body.default-theme button:first-child,
+body.default-theme button:nth-child(2) {
     background: #ef4444;
 }
 
